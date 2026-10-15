@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="RobotSelfBalancing.Communication/RobotSelfBalancing.Communication.csproj" />
+  <Project Path="RobotSelfBalancing.Domain/RobotSelfBalancing.Domain.csproj" />
+  <Project Path="RobotSelfBalancing.Persistence/RobotSelfBalancing.Persistence.csproj" />
+  <Project Path="RobotSelfBalancing.UI/RobotSelfBalancing.UI.csproj" />
+</Solution>

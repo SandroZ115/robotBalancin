@@ -1,0 +1,80 @@
+﻿<Window x:Class="RobotSelfBalancing.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+        Title="Panel de Control - Robot Autoequilibrado" Height="700" Width="1000"
+        Background="#1E1E1E">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- PANEL SUPERIOR -->
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <TextBlock Text="Puerto:" Foreground="White" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox x:Name="CmbPuertos" Width="100" Margin="0,0,10,0"/>
+
+                <TextBlock Text="Baudios:" Foreground="White" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox x:Name="CmbBaudios" Width="90" Margin="0,0,10,0"/>
+
+                <Button x:Name="BtnConectar" Content="Conectar" Width="90" Height="30" Click="BtnConectar_Click"/>
+                <Button x:Name="BtnDesconectar" Content="Desconectar" Width="90" Height="30" Click="BtnDesconectar_Click" IsEnabled="False" Margin="5,0,0,0"/>
+            </StackPanel>
+
+            <Button Grid.Column="1" x:Name="BtnParo" Content="PARO DE EMERGENCIA" 
+                    Width="200" Height="35" FontSize="13" FontWeight="Bold" 
+                    Background="#D32F2F" Foreground="White" Click="BtnParo_Click"/>
+        </Grid>
+
+        <!-- PANEL SECUNDARIO -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="Kp:" Foreground="White" VerticalAlignment="Center" Margin="2,0"/>
+                <TextBox x:Name="TxtKp" Text="12.5" Width="45"/>
+
+                <TextBlock Text="Ki:" Foreground="White" VerticalAlignment="Center" Margin="5,0,2,0"/>
+                <TextBox x:Name="TxtKi" Text="1.2" Width="45"/>
+
+                <TextBlock Text="Kd:" Foreground="White" VerticalAlignment="Center" Margin="5,0,2,0"/>
+                <TextBox x:Name="TxtKd" Text="0.4" Width="45"/>
+
+                <TextBlock Text="Alpha:" Foreground="White" VerticalAlignment="Center" Margin="5,0,2,0"/>
+                <TextBox x:Name="TxtAlpha" Text="0.95" Width="45"/>
+
+                <TextBlock Text="ThetaRef:" Foreground="White" VerticalAlignment="Center" Margin="5,0,2,0"/>
+                <TextBox x:Name="TxtThetaRef" Text="0.0" Width="45"/>
+
+                <Button x:Name="BtnEnviarPID" Content="Enviar PID" Margin="10,0,0,0" Padding="8,2" Click="BtnEnviarPID_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock x:Name="TxtLoss" Text="Pérdida: 0.0%" Foreground="#FFB74D" FontSize="13" FontWeight="Bold" Margin="10,0"/>
+                <TextBlock x:Name="TxtVBat" Text="Batería: 0.0 V" Foreground="#81C784" FontSize="13" FontWeight="Bold" Margin="10,0"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- GRÁFICAS -->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ScottPlot:WpfPlot x:Name="PlotPitch" Grid.Row="0" Margin="0,0,0,5"/>
+            <ScottPlot:WpfPlot x:Name="PlotControl" Grid.Row="1" Margin="0,5,0,0"/>
+        </Grid>
+    </Grid>
+</Window>
